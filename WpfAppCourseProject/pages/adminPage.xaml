@@ -1,0 +1,114 @@
+﻿<Page
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfAppCourseProject.pages"
+      xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls" xmlns:numericInput="http://gu.se/NumericInput" x:Class="WpfAppCourseProject.pages.adminPage"
+      mc:Ignorable="d"
+      Title="adminPage" Height="574" Width="1054">
+
+    <Grid Background="White">
+        <TabControl TabStripPlacement="Left">
+            <TabItem Header="Пользователи" >
+                <Grid HorizontalAlignment="Stretch" Height="548" VerticalAlignment="Stretch" Width="852">
+                    <Rectangle HorizontalAlignment="Left" Height="148" Margin="10,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="382"/>
+                    <TextBlock TextAlignment="Center" FontSize="18" FontWeight="Bold" Margin="26,6,468,471" Text="Удалить"/>
+                    <TextBlock TextAlignment="Left" FontSize="18" FontWeight="Normal" Margin="26,38,468,484" Text="Код покупателя"/>
+                    <TextBox x:Name="inpDelConsumerCode" HorizontalAlignment="Left" Margin="26,64,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="352" FontSize="15" PreviewTextInput="NumberValidationTextBox"/>
+                    <Button Content="Удалить" HorizontalAlignment="Left" Margin="26,104,0,0" VerticalAlignment="Top" Height="32" Width="140" Click="DeleteConsumerAndUser"/>
+                    <ListView x:Name="allConsumersTable" Margin="0,168,0,0">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Код" DisplayMemberBinding="{Binding consumerCode}" />
+                                <GridViewColumn Header="Телефон" DisplayMemberBinding="{Binding consumerPhone}" />
+                                <GridViewColumn Header="Адрес" DisplayMemberBinding="{Binding consumerAddress}" />
+                                <GridViewColumn Header="Счет" DisplayMemberBinding="{Binding consumerBill}" />
+                                <GridViewColumn Header="Имя уч. записи" DisplayMemberBinding="{Binding userName}" />
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </Grid>
+            </TabItem>
+
+
+            <TabItem Header="Книги">
+                <Grid Background="White">
+                    <TabControl TabStripPlacement="Top" Background="White">
+
+                        <TabItem Header="Просмотр" >
+                            <Grid Background="#FFE5E5E5">
+                                <ListView x:Name="allBooksTable">
+                                    <ListView.View>
+                                        <GridView>
+                                            <GridViewColumn Header="Код" DisplayMemberBinding="{Binding bookCode}" />
+                                            <GridViewColumn Header="Название" DisplayMemberBinding="{Binding bookName}" />
+                                            <GridViewColumn Header="Автор" DisplayMemberBinding="{Binding bookAuthor}" />
+                                            <GridViewColumn Header="Стоимость" DisplayMemberBinding="{Binding bookCost}" />
+                                        </GridView>
+                                    </ListView.View>
+                                </ListView>
+                            </Grid>
+                        </TabItem>
+
+                        <TabItem Header="Редактировать базу">
+                            <Grid Background="White">
+                                <Rectangle HorizontalAlignment="Left" Height="338" Margin="10,10,0,0" Stroke="Black" VerticalAlignment="Top" Width="382"/>
+                                <TextBlock TextAlignment="Center" FontSize="18" FontWeight="Bold" Margin="26,18,478,480" Text="Добавить"/>
+                                <TextBlock TextAlignment="Left" FontSize="18" FontWeight="Normal" Margin="26,48,478,438" Text="Название книги"/>
+                                <TextBox x:Name="inpBookName" HorizontalAlignment="Left" Margin="26,85,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="352" FontSize="15"/>
+                                <TextBlock TextAlignment="Left" FontSize="18" FontWeight="Normal" Margin="26,124,478,369" Text="Автор книги"/>
+                                <TextBox x:Name="inpBookAuthor" HorizontalAlignment="Left" Margin="26,155,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="352" FontSize="15"/>
+                                <TextBlock TextAlignment="Left" FontSize="18" FontWeight="Normal" Margin="26,197,478,295" Text="Стоимость"/>
+                                <TextBox x:Name="inpBookCost" HorizontalAlignment="Left" Margin="26,228,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="352" FontSize="15" PreviewTextInput="NumberValidationTextBox"/>
+                                <Button Content="Добавить" HorizontalAlignment="Left" Margin="26,275,0,0" VerticalAlignment="Top" Height="33" Width="140" Click="AddBook"/>
+
+                                <Rectangle HorizontalAlignment="Left" Height="338" Margin="408,10,0,0" Stroke="Black" VerticalAlignment="Top" Width="382"/>
+                                <TextBlock TextAlignment="Center" FontSize="18" FontWeight="Bold" Margin="423,18,81,480" Text="Изменить"/>
+                                <TextBlock TextAlignment="Left" FontSize="18" FontWeight="Normal" Margin="423,40,81,457" Text="Код книги"/>
+                                <TextBox x:Name="inpEditCode" HorizontalAlignment="Left" Margin="423,66,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="352" FontSize="15" PreviewTextInput="NumberValidationTextBox"/>
+                                <TextBlock TextAlignment="Left" FontSize="18" FontWeight="Normal" Margin="423,100,81,399" Text="Название книги"/>
+                                <TextBox x:Name="inpEditName" HorizontalAlignment="Left" Margin="423,124,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="352" FontSize="15"/>
+                                <TextBlock TextAlignment="Left" FontSize="18" FontWeight="Normal" Margin="423,164,81,333" Text="Автор книги"/>
+                                <TextBox x:Name="inpEditAuthor" HorizontalAlignment="Left" Margin="423,190,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="352" FontSize="15"/>
+                                <TextBlock TextAlignment="Left" FontSize="18" FontWeight="Normal" Margin="423,224,81,275" Text="Стоимость"/>
+                                <TextBox x:Name="inpEditCost" HorizontalAlignment="Left" Margin="423,248,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="352" FontSize="15" PreviewTextInput="NumberValidationTextBox"/>
+                                <Button Content="Изменить" HorizontalAlignment="Left" Margin="423,294,0,0" VerticalAlignment="Top" Height="32" Width="140" Click="EditBook"/>
+
+                                <Rectangle HorizontalAlignment="Left" Height="149" Margin="10,364,0,0" Stroke="Black" VerticalAlignment="Top" Width="382"/>
+                                <TextBlock TextAlignment="Center" FontSize="18" FontWeight="Bold" Margin="26,371,478,127" Text="Удалить"/>
+                                <TextBlock TextAlignment="Left" FontSize="18" FontWeight="Normal" Margin="27,403,477,94" Text="Код книги"/>
+                                <TextBox x:Name="inpDeleteCode" HorizontalAlignment="Left" Margin="27,429,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="352" FontSize="15" PreviewTextInput="NumberValidationTextBox"/>
+                                <Button Content="Удалить" HorizontalAlignment="Left" Margin="26,469,0,0" VerticalAlignment="Top" Height="32" Width="140" Click="DeleteBook"/>
+                            </Grid>
+                        </TabItem>
+
+                    </TabControl>
+                </Grid>
+            </TabItem>
+
+
+            <TabItem Header="Заказы">
+                <Grid HorizontalAlignment="Stretch" Height="548" VerticalAlignment="Stretch" Width="852">
+                    <Rectangle HorizontalAlignment="Left" Height="148" Margin="10,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="382"/>
+                    <TextBlock TextAlignment="Center" FontSize="18" FontWeight="Bold" Margin="26,6,468,471" Text="Удалить"/>
+                    <TextBlock TextAlignment="Left" FontSize="18" FontWeight="Normal" Margin="26,38,468,484" Text="Код заказа"/>
+                    <TextBox x:Name="inpDelOrderCode" HorizontalAlignment="Left" Margin="26,64,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="352" FontSize="15" PreviewTextInput="NumberValidationTextBox"/>
+                    <Button Content="Удалить" HorizontalAlignment="Left" Margin="26,104,0,0" VerticalAlignment="Top" Height="32" Width="140" Click="DeleteBook"/>
+                    <ListView x:Name="allOrdersTable" Margin="0,168,0,0">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Код заказа" DisplayMemberBinding="{Binding orderCode}" />
+                                <GridViewColumn Header="Телефон покупателя" DisplayMemberBinding="{Binding consumerPhoneDeal}" />
+                                <GridViewColumn Header="Количество купленных книг" DisplayMemberBinding="{Binding quantity}" />
+                                <GridViewColumn Header="Сумма покупки" DisplayMemberBinding="{Binding totalCost}" />
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </Grid>
+            </TabItem>
+        </TabControl>
+
+
+    </Grid>
+</Page>

@@ -1,0 +1,59 @@
+﻿<Page x:Class="WpfAppCourseProject.pages.userPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfAppCourseProject.pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="568.5" d:DesignWidth="1059.5"
+      Title="userPage">
+
+    <Grid Background="White">
+        <TabControl TabStripPlacement="Left">
+            <TabItem Header="Книги">
+                <Grid Background="White">
+                    <Grid HorizontalAlignment="Center" Height="551" Margin="0,11,0,0" VerticalAlignment="Top" Width="894">
+                        <Rectangle HorizontalAlignment="Left" Height="155" Margin="10,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="461"/>
+                        <TextBlock HorizontalAlignment="Left" Margin="115,12,0,0" Text="Сделать заказ" TextWrapping="Wrap" VerticalAlignment="Top" Width="204" FontSize="18" FontWeight="Bold" TextAlignment="Center"/>
+                        <TextBox x:Name="intOrderCodeBook" HorizontalAlignment="Left" Margin="27,71,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="204" FontSize="15" PreviewTextInput="NumberValidationTextBox"/>
+                        <TextBlock HorizontalAlignment="Left" Margin="27,50,0,0" Text="Код книги" TextWrapping="Wrap" VerticalAlignment="Top" Width="204" FontSize="14"/>
+                        <TextBox x:Name="intOrderQuantity" HorizontalAlignment="Left" Margin="243,71,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="204" FontSize="15" PreviewTextInput="NumberValidationTextBox"/>
+                        <TextBlock HorizontalAlignment="Left" Margin="243,50,0,0" Text="Количество книг" TextWrapping="Wrap" VerticalAlignment="Top" Width="204" FontSize="14"/>
+                        <Button Content="Подтвердить" HorizontalAlignment="Left" Margin="27,117,0,0" VerticalAlignment="Top" Width="102" Click="CreateOrder"/>
+                        <ListView x:Name="allBooksTable" Margin="0,176,0,-1">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="Код" DisplayMemberBinding="{Binding bookCode}" />
+                                    <GridViewColumn Header="Название" DisplayMemberBinding="{Binding bookName}" />
+                                    <GridViewColumn Header="Автор" DisplayMemberBinding="{Binding bookAuthor}" />
+                                    <GridViewColumn Header="Стоимость" DisplayMemberBinding="{Binding bookCost}" />
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </Grid>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Мои заказы">
+                <Grid HorizontalAlignment="Stretch" Height="548" VerticalAlignment="Stretch" Width="852">
+                    <Rectangle HorizontalAlignment="Left" Height="148" Margin="10,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="382"/>
+                    <TextBlock TextAlignment="Center" FontSize="18" FontWeight="Bold" Margin="26,6,468,471" Text="Удалить"/>
+                    <TextBlock TextAlignment="Left" FontSize="18" FontWeight="Normal" Margin="26,38,468,484" Text="Код заказа"/>
+                    <TextBox x:Name="inpDelOrderCode" HorizontalAlignment="Left" Margin="26,64,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="352" FontSize="15" PreviewTextInput="NumberValidationTextBox"/>
+                    <Button Content="Удалить" HorizontalAlignment="Left" Margin="26,104,0,0" VerticalAlignment="Top" Height="32" Width="140" Click="DeleteOrder"/>
+                    <ListView x:Name="allOrdersTable" Margin="0,168,0,0">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Код заказа" DisplayMemberBinding="{Binding orderCode}" />
+                                <GridViewColumn Header="Код книги" DisplayMemberBinding="{Binding bookCodeDeal}" />
+                                <GridViewColumn Header="Телефон покупателя" DisplayMemberBinding="{Binding consumerPhoneDeal}" />
+                                <GridViewColumn Header="Количество купленных книг" DisplayMemberBinding="{Binding quantity}" />
+                                <GridViewColumn Header="Сумма покупки" DisplayMemberBinding="{Binding totalCost}" />
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Page>
